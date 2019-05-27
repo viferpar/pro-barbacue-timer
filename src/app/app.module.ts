@@ -8,10 +8,16 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { TimerModalPage } from './timer-modal/timer-modal.page';
 
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [
+    AppComponent,
+    TimerModalPage
+  ],
+  entryComponents: [
+    TimerModalPage
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
@@ -24,4 +30,4 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
