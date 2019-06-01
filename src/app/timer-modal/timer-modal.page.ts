@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { ModalController, NavParams } from '@ionic/angular';
+import { TimerCard } from '../models/timerCard';
 
 @Component({
   selector: 'app-timer-modal',
@@ -8,9 +9,18 @@ import { ModalController } from '@ionic/angular';
 })
 export class TimerModalPage implements OnInit {
 
-  constructor(private modalController: ModalController) { }
+  timerCard:TimerCard;
+
+  constructor(
+    private modalController: ModalController,
+    private navParams: NavParams
+  ) { }
 
   ngOnInit() {
+
+    this.timerCard = this.navParams.data.timer;
+    console.log(this.timerCard);
+
   }
 
   closeModal() {
