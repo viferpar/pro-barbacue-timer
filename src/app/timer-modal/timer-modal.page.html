@@ -8,5 +8,32 @@
 </ion-header>
 
 <ion-content>
-  Mensaje de prueba
+  <ion-item>
+    <ion-label>Nombre</ion-label>
+    <ion-input
+      [(ngModel)]="timerCard.name"
+      required="true"
+      type="text"
+      placeholder="Nombre del producto"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Tipo de producto</ion-label>
+    <ion-select
+      value="arroz"
+      cancelText="Cancelar"
+      okText="Aceptar"
+      [(ngModel)]="timerCard.type"
+      required="true"
+    >
+      <ion-select-option value="arroz">Arroz</ion-select-option>
+      <ion-select-option value="finos">Cortes finos</ion-select-option>
+      <ion-select-option value="gruesos">Cortes gruesos</ion-select-option>
+      <ion-select-option value="ribs">Costillas</ion-select-option>
+      <ion-select-option value="embutido">Embutido</ion-select-option>
+      <ion-select-option value="pescado">Pescado</ion-select-option>
+      <ion-select-option value="aves">Pollo y conejo</ion-select-option>
+    </ion-select>
+  </ion-item>
 </ion-content>

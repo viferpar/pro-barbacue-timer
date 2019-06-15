@@ -17,14 +17,12 @@ export class TimerModalPage implements OnInit {
   ) { }
 
   ngOnInit() {
-
     this.timerCard = this.navParams.data.timer;
-    console.log(this.timerCard);
-
   }
 
-  closeModal() {
-    this.modalController.dismiss();
+  async closeModal() {
+    this.modalController.dismiss(this.timerCard);
   }
+  
 
 }
