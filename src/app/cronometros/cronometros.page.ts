@@ -20,7 +20,7 @@ export class CronometrosPage implements OnInit {
 
     var timer = new Timer(0, 0, 0, 1);
 
-    var timerCard = new TimerCard(0, 'longaniza', 'embutido', timer);
+    var timerCard = new TimerCard(0, null, null, timer);
 
     this.openTimerModal(timerCard)
 

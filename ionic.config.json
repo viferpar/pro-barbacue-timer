@@ -1,5 +1,7 @@
 {
   "name": "pro-barbacue-timer",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

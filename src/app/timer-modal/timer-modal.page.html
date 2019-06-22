@@ -1,39 +1,86 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-title>Nuevo cronómetro</ion-title>
-    <ion-buttons slot="primary">
-      <ion-button (click)="closeModal()">Close</ion-button>
-    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-item>
-    <ion-label>Nombre</ion-label>
-    <ion-input
-      [(ngModel)]="timerCard.name"
-      required="true"
-      type="text"
-      placeholder="Nombre del producto"
-    ></ion-input>
-  </ion-item>
+  <ion-item-divider color="secondary">
+    <ion-label>
+      Información
+    </ion-label>
+  </ion-item-divider>
+  <ion-item-group>
+    <ion-item>
+      <ion-input
+        [(ngModel)]="timerCard.name"
+        required="true"
+        type="text"
+        placeholder="Nombre del producto"
+      ></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label>Tipo de producto</ion-label>
-    <ion-select
-      value="arroz"
-      cancelText="Cancelar"
-      okText="Aceptar"
-      [(ngModel)]="timerCard.type"
-      required="true"
-    >
-      <ion-select-option value="arroz">Arroz</ion-select-option>
-      <ion-select-option value="finos">Cortes finos</ion-select-option>
-      <ion-select-option value="gruesos">Cortes gruesos</ion-select-option>
-      <ion-select-option value="ribs">Costillas</ion-select-option>
-      <ion-select-option value="embutido">Embutido</ion-select-option>
-      <ion-select-option value="pescado">Pescado</ion-select-option>
-      <ion-select-option value="aves">Pollo y conejo</ion-select-option>
-    </ion-select>
-  </ion-item>
+    <ion-item>
+      <ion-label>Tipo de producto</ion-label>
+      <ion-select
+        [(ngModel)]="timerCard.type"
+        cancelText="Cancelar"
+        okText="Aceptar"
+        required="true"
+      >
+        <ion-select-option value="arroz">Arroz</ion-select-option>
+        <ion-select-option value="finos">Cortes finos</ion-select-option>
+        <ion-select-option value="gruesos">Cortes gruesos</ion-select-option>
+        <ion-select-option value="ribs">Costillas</ion-select-option>
+        <ion-select-option value="embutido">Embutido</ion-select-option>
+        <ion-select-option value="pescado">Pescado</ion-select-option>
+        <ion-select-option value="aves">Pollo y conejo</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-item-group>
+  <ion-item-divider color="secondary">
+    <ion-label>
+      Temporizador
+    </ion-label>
+  </ion-item-divider>
+  <ion-item-group>
+    <ion-item>
+      <ion-label class="timer"
+        >{{ timerCard.timer.hour.toString().padStart(2, "0") }}-{{
+          timerCard.timer.minute.toString().padStart(2, "0")
+        }}-{{ timerCard.timer.second.toString().padStart(2, "0") }}</ion-label
+      >
+      <ion-button (click)="showTimePicker()">
+        <ion-icon name="create"></ion-icon>
+      </ion-button>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Vueltas</ion-label>
+      <ion-select
+        [(ngModel)]="timerCard.timer.step"
+        cancelText="Cancelar"
+        okText="Aceptar"
+        required="true"
+      >
+        <ion-select-option value="1">1</ion-select-option>
+        <ion-select-option value="2">2</ion-select-option>
+        <ion-select-option value="3">3</ion-select-option>
+        <ion-select-option value="4">4</ion-select-option>
+      </ion-select>
+    </ion-item>
+  </ion-item-group>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-buttons slot="primary">
+      <ion-button fill="outline" color="medium" (click)="closeModal()"
+        >Cerrar</ion-button
+      >
+      <ion-button fill="outline" color="success" (click)="closeModal()"
+        >Añadir</ion-button
+      >
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

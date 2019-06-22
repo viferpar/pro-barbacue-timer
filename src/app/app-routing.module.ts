@@ -10,7 +10,12 @@ const routes: Routes = [
   {
     path: 'cronometros',
     loadChildren: './cronometros/cronometros.module#CronometrosPageModule'
+  },
+  {
+    path: 'about',
+    loadChildren: './about/about.module#AboutPageModule'
   }
+
 ];
 
 @NgModule({

@@ -11,9 +11,14 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 export class AppComponent {
   public appPages = [
     {
-      title: 'Cronómetros',
+      title: 'Temporizadores',
       url: '/cronometros',
       icon: 'stopwatch'
+    },
+    {
+      title: 'Acerca de',
+      url: '/about',
+      icon: 'help'
     }
   ];
 

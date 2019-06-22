@@ -1,15 +1,16 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Cronómetros</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Temporizadores</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
-    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openNewTimerModal()">
       <ion-icon name="stopwatch"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>
