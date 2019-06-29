@@ -18,9 +18,9 @@ export class CronometrosPage implements OnInit {
 
   public async openNewTimerModal() {
 
-    var timer = new Timer(0, 0, 0, 1);
+    var timer = new Timer(23, 59, 59, 1);
 
-    var timerCard = new TimerCard(0, null, null, timer);
+    var timerCard = new TimerCard(0, "Longaniza", "embutido", timer);
 
     this.openTimerModal(timerCard)
 

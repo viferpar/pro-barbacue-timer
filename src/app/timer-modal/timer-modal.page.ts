@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController, NavParams } from '@ionic/angular';
 import { PickerController } from '@ionic/angular';
-import { PickerOptions, PickerButton } from '@ionic/core';
+import { PickerOptions, PickerColumnOption } from '@ionic/core';
 import { TimerCard } from '../models/timerCard';
+
+const MAX_HOUR = 23;
+const MAX_MINUTE_SECOND = 59;
 
 @Component({
   selector: 'app-timer-modal',
@@ -28,53 +31,64 @@ export class TimerModalPage implements OnInit {
   }
 
   async showTimePicker() {
+
+    let picker = await this.pickerCtrl.create(this.buildTimerPickerOptions());
+
+    picker.present();   
+
+  }
+
+  private cancelHandler() {
+    //Do nothing
+  }
+
+  private editHandler(value: any) {    
+    this.timerCard.timer.hour = value.horas.value;
+    this.timerCard.timer.minute = value.minutos.value;
+    this.timerCard.timer.second = value.segundos.value;
+  }
+
+  private buildTimerPickerOptions() {
     let opts: PickerOptions = {
       buttons: [
         {
           text: 'Cancelar',
-          role: 'cancel'
+          handler: (value: any): void => { this.cancelHandler() }
         },
         {
-          text: 'Editar'
+          text: 'Editar',
+          handler: (value: any): void => { this.editHandler(value) }
         }
       ],
       columns: [
         {
           name: 'horas',
-          options: [
-            { text: '1', value: 1 },
-            { text: '2', value: 2 },
-            { text: '3', value: 3 }
-          ]
+          options: this.getTimeOptions(MAX_HOUR)
         },
         {
           name: 'minutos',
-          options: [
-            { text: '1', value: 1 },
-            { text: '2', value: 2 },
-            { text: '3', value: 3 }
-          ]
+          options: this.getTimeOptions(MAX_MINUTE_SECOND)
         },
         {
           name: 'segundos',
-          options: [
-            { text: '1', value: 1 },
-            { text: '2', value: 2 },
-            { text: '3', value: 3 }
-          ]
+          options: this.getTimeOptions(MAX_MINUTE_SECOND)
         }
       ]
-    };
-    let picker = await this.pickerCtrl.create(opts);
-    picker.present();
-    picker.onDidDismiss().then(async data => {
-      let horas = await picker.getColumn('horas');
-      let minutos = await picker.getColumn('minutos');
-      let segundos = await picker.getColumn('segundos');
-      this.timerCard.timer.hour = horas.options[horas.selectedIndex].value;
-      this.timerCard.timer.minute = minutos.options[minutos.selectedIndex].value;
-      this.timerCard.timer.second = segundos.options[segundos.selectedIndex].value;
-    });
+    }
+    return opts;
+  }
+
+  private getTimeOptions(maxValue: number) {
+
+    let hourOpts: PickerColumnOption[] = [];
+
+    for (var i = 0; i <= maxValue; i++) {
+      let opt: PickerColumnOption = { text: i.toString().padStart(2, '0'), value: i };
+      hourOpts.push(opt);
+    }
+
+    return hourOpts;
+
   }
 
 
