@@ -47,6 +47,9 @@ export class TimerModalPage implements OnInit {
     this.timerCard.timer.hour = value.horas.value;
     this.timerCard.timer.minute = value.minutos.value;
     this.timerCard.timer.second = value.segundos.value;
+    this.timerCard.timer.memHour = value.horas.value;
+    this.timerCard.timer.memMinute = value.minutos.value;
+    this.timerCard.timer.memSecond = value.segundos.value;
   }
 
   private buildTimerPickerOptions() {

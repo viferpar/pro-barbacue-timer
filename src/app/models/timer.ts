@@ -4,7 +4,11 @@ export class Timer {
         public hour: number,
         public minute: number,
         public second: number,
-        public step: number
+        public memHour: number,
+        public memMinute: number,
+        public memSecond: number,
+        public step: number,
+        public memStep: number
     ) {}
 
     

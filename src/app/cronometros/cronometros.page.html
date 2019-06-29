@@ -39,16 +39,29 @@
             <ion-label>{{ timerCard.value.timer.step }}</ion-label>
           </ion-col>
         </ion-row>
-        <ion-row align-items-center> 
+        <ion-row align-items-center>
           <ion-col>
             <ion-toolbar>
               <ion-buttons slot="start">
-                <ion-button fill="solid" color="success">
+                <ion-button
+                  [disabled]="timerCard.value.timer.step === 0"
+                  (click)="startTimer(timerCard.value.id)"
+                  fill="solid"
+                  color="success"
+                >
                   Iniciar
                 </ion-button>
-                <ion-button fill="solid" color="warning">
+                <ion-button
+                  [disabled]="
+                    timerCard.value.timer.step === 0 ||
+                    timerCard.value.process === null
+                  "
+                  (click)="stopTimer(timerCard.value.id)"
+                  fill="solid"
+                  color="warning"
+                >
                   Pausar
-                </ion-button>                
+                </ion-button>
               </ion-buttons>
             </ion-toolbar>
           </ion-col>

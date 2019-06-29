@@ -23,15 +23,12 @@ export class CronometrosPage implements OnInit {
 
   ngOnInit() {
     this.timerMap = new Map();
-    let timer = new Timer(0, 18, 0, 1);
-    let timerCard = new TimerCard(this.auxIdentifier, "Paella Valenciana", "arroz", timer);
-    this.timerMap.set(this.auxIdentifier, timerCard);
   }
 
   public async openNewTimerModal() {
-    let timer = new Timer(0, 0, 0, 1);
+    let timer = new Timer(0, 0, 0, 0, 0, 0, 1, 1);
     this.auxIdentifier++;
-    let timerCard = new TimerCard(this.auxIdentifier, null, "arroz", timer);
+    let timerCard = new TimerCard(this.auxIdentifier, null, "arroz", timer, null);
     this.openTimerModal(timerCard);
   }
 
@@ -61,7 +58,7 @@ export class CronometrosPage implements OnInit {
   }
   renameIdentifiers() {
     let i = 0;
-    
+
   }
 
   private async openTimerModal(timerCard: TimerCard) {
@@ -80,6 +77,59 @@ export class CronometrosPage implements OnInit {
     });
 
     return await timerModal.present();
+  }
+
+  public startTimer(id: number) {
+    let timerCard: TimerCard = this.timerMap.get(id);
+    let date: Date = new Date();
+    date.setHours(date.getHours() + timerCard.timer.hour);
+    date.setMinutes(date.getMinutes() + timerCard.timer.minute);
+    date.setSeconds(date.getSeconds() + timerCard.timer.second);
+    let process = setInterval(() => { this.countdownTime(id, date.getTime()); }, 1000);
+    timerCard.process = process;
+    this.timerMap.set(id, timerCard);
+
+  }
+
+  private countdownTime(id: number, time: number) {
+
+    let timerCard: TimerCard = this.timerMap.get(id);
+    let now = new Date().getTime();
+    let t = time - now;
+
+    if (t >= 0) {
+
+      let hours = Math.floor((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+      let secs = Math.floor((t % (1000 * 60)) / 1000);
+
+      timerCard.timer.hour = hours;
+      timerCard.timer.minute = mins;
+      timerCard.timer.second = secs;
+
+      this.timerMap.set(id, timerCard);
+
+    } else {
+      clearInterval(timerCard.process);
+      timerCard.process = null;
+      timerCard.timer.step--;
+
+      if (timerCard.timer.step > 0) {
+        timerCard.timer.hour = timerCard.timer.memHour;
+        timerCard.timer.minute = timerCard.timer.memMinute;
+        timerCard.timer.second = timerCard.timer.memSecond;
+        this.startTimer(id);
+      }
+      this.timerMap.set(id, timerCard);
+
+    }
+
+  }
+
+  public stopTimer(id: number) {
+    let timerCard: TimerCard = this.timerMap.get(id);
+    clearInterval(timerCard.process);
+    timerCard.process = null;
   }
 
 }
