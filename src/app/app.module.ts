@@ -10,14 +10,17 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { TimerModalPage } from './timer-modal/timer-modal.page';
+import { TimerOptsComponent } from './timer-opts/timer-opts.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TimerModalPage
+    TimerModalPage,
+    TimerOptsComponent
   ],
   entryComponents: [
-    TimerModalPage
+    TimerModalPage,
+    TimerOptsComponent
   ],
   imports: [
     BrowserModule,

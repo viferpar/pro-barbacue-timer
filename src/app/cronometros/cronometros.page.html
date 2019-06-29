@@ -7,7 +7,56 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content fullscreen>
+  <ion-card *ngFor="let timerCard of timerMap | keyvalue">
+    <ion-card-header class="tcHeader">
+      <ion-toolbar class="tcHeader">
+        <ion-card-title>{{ timerCard.value.name }}</ion-card-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="openOptions($event, timerCard.value.id)">
+            <ion-icon class="tcOptions" slot="icon-only" name="more"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-card-header>
+
+    <ion-card-content class="tcContent">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label class="timer"
+              >{{ timerCard.value.timer.hour.toString().padStart(2, "0") }}-{{
+                timerCard.value.timer.minute.toString().padStart(2, "0")
+              }}-{{
+                timerCard.value.timer.second.toString().padStart(2, "0")
+              }}</ion-label
+            >
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col class="step">
+            <ion-label class="stepTag">Vuelta: </ion-label>
+            <ion-label>{{ timerCard.value.timer.step }}</ion-label>
+          </ion-col>
+        </ion-row>
+        <ion-row align-items-center> 
+          <ion-col>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button fill="solid" color="success">
+                  Iniciar
+                </ion-button>
+                <ion-button fill="solid" color="warning">
+                  Pausar
+                </ion-button>                
+              </ion-buttons>
+            </ion-toolbar>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="openNewTimerModal()">
       <ion-icon name="stopwatch"></ion-icon>

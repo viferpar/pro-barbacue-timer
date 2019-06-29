@@ -1,0 +1,36 @@
+.tcHeader {
+  background-color: #284169;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+
+.tcHeader > ion-card-title {
+  text-transform: uppercase;
+  color: white;
+  font-size: 14px;
+}
+
+.tcContent {
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+.tcHeader > ion-toolbar {
+    --background: #284169;
+    --min-height: 0px;
+    --padding-top: 0px;
+    --padding-bottom: 0px;
+}
+
+.step > ion-label {
+  font-size: 14px;
+}
+
+.stepTag {
+  font-weight: bold;
+}
+
+.tcOptions {
+  font-size: 8px;
+  color: white;
+}

@@ -26,16 +26,17 @@ export class TimerModalPage implements OnInit {
     this.timerCard = this.navParams.data.timer;
   }
 
-  async closeModal() {
+  async editModal() {
     this.modalController.dismiss(this.timerCard);
   }
 
+  async closeModal() {
+    this.modalController.dismiss(null);
+  }
+
   async showTimePicker() {
-
     let picker = await this.pickerCtrl.create(this.buildTimerPickerOptions());
-
     picker.present();   
-
   }
 
   private cancelHandler() {
@@ -90,6 +91,5 @@ export class TimerModalPage implements OnInit {
     return hourOpts;
 
   }
-
 
 }

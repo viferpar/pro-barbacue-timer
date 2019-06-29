@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar color="primary">
-    <ion-title>Nuevo cronómetro</ion-title>
+    <ion-title>Nuevo / editar cronómetro</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -45,8 +45,8 @@
   </ion-item-divider>
   <ion-item-group>
     <ion-item>
-      <ion-label class="timer"
-        >{{ timerCard.timer.hour.toString().padStart(2, "0") }}-{{
+      <ion-label class="timer">
+        {{ timerCard.timer.hour.toString().padStart(2, "0") }}-{{
           timerCard.timer.minute.toString().padStart(2, "0")
         }}-{{ timerCard.timer.second.toString().padStart(2, "0") }}</ion-label
       >
@@ -63,10 +63,10 @@
         okText="Aceptar"
         required="true"
       >
-        <ion-select-option [value]=1>1</ion-select-option>
-        <ion-select-option [value]=2>2</ion-select-option>
-        <ion-select-option [value]=3>3</ion-select-option>
-        <ion-select-option [value]=4>4</ion-select-option>
+        <ion-select-option [value]="1">1</ion-select-option>
+        <ion-select-option [value]="2">2</ion-select-option>
+        <ion-select-option [value]="3">3</ion-select-option>
+        <ion-select-option [value]="4">4</ion-select-option>
       </ion-select>
     </ion-item>
   </ion-item-group>
@@ -78,7 +78,7 @@
       <ion-button fill="outline" color="medium" (click)="closeModal()"
         >Cerrar</ion-button
       >
-      <ion-button fill="outline" color="success" (click)="closeModal()"
+      <ion-button fill="outline" color="success" (click)="editModal()"
         >Añadir</ion-button
       >
     </ion-buttons>
