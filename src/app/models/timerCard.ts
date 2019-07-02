@@ -7,7 +7,7 @@ export class TimerCard {
         public name: string,
         public type: string,
         public timer: Timer,
-        public process: NodeJS.Timeout
+        public process: any
     ) { }
 
 }
